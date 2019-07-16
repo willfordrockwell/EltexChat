@@ -1,0 +1,23 @@
+#graph
+CC = gcc
+CCFLAGS = -g 
+#-DDEBUG
+
+LIBRARY = graph
+LIBRARY_SOURCES = Delete_Tab.c 
+LIBRARY_SOURCES += End_Window.c 
+LIBRARY_SOURCES += Init.c 
+LIBRARY_SOURCES += Init_Tab.c 
+LIBRARY_SOURCES += Out_Str_Window.c 
+LIBRARY_SOURCES += Out_Window_Title.c
+LIBRARY_SOURCES += Refresh_Tab.c
+LIBRARY_SOURCES += Sig_Winch.c
+LIBRARY_OBJECTS = $(LIBRARY_SOURCES:.c=.o)
+
+all: libgraph
+
+libgraph: $(LIBRARY_OBJECTS)
+	ar rc lib$(LIBRARY).a $(LIBRARY_OBJECTS)
+
+$(LIBRARY_OBJECTS): $(LIBRARY_SOURCES)
+	$(CC) $(LIBRARY_SOURCES) -c $(CCFLAGS)
